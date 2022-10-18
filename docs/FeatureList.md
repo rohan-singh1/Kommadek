@@ -12,3 +12,5 @@
 
 - Read and Parse CSV file.
 - Show CSV file in a tabular form.
+- Modify the contents of existing CSV file.
+- Save the modified data to a CSV file.
