@@ -3,18 +3,21 @@
 KommaTableModel::KommaTableModel(QList <QStringList> string_matrix, QObject *parent) : QAbstractTableModel(parent)
 {
     _stringMatrix = string_matrix;
+    _rowCount = _stringMatrix.size();
+    _columnCount = maxColumns();
+    _cellCount = cellCount();
 }
 
 int KommaTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);               // Parameter not required
-    return _stringMatrix.size();
+    return _rowCount;
 }
 
 int KommaTableModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);               // Parameter not required
-    return getMaxColumns();
+    return _columnCount;
 }
 
 QVariant KommaTableModel::data(const QModelIndex &index, int role) const
@@ -45,21 +48,33 @@ QVariant KommaTableModel::headerData(int section, Qt::Orientation orientation, i
     {
         return _stringMatrix.at(0).at(section);
     }
+    else if (role == Qt::DisplayRole && orientation == Qt::Vertical)
+    {
+        return QString::number(section + 1);
+    }
     else
     {
         return QVariant();
     }
 }
 
-int KommaTableModel::getMaxColumns() const
+int KommaTableModel::maxColumns()
 {
-    int maxColumns = 0;
+    int maxColumns = 0, cellsCount = 0;
     QStringList row;
 
     foreach(row, _stringMatrix)
     {
-        maxColumns = row.size() > maxColumns ? row.size() : maxColumns;
+        int rowSize  = row.size();
+        maxColumns = rowSize > maxColumns ? rowSize : maxColumns;
+        cellsCount += rowSize;
     }
+    _cellCount = cellsCount;
 
     return maxColumns;
+}
+
+int KommaTableModel::cellCount() const
+{
+    return _cellCount;
 }
