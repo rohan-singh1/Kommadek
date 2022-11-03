@@ -1,3 +1,5 @@
 /build-Kommadek-Desktop_Qt_5_15_2_clang_64bit-Debug/*
 /Kommadek.pro.user
 .*
+/Makefile
+/ui/*.autosave
