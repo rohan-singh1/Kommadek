@@ -15,10 +15,14 @@ INCLUDEPATH += $$PWD/src/
 
 SOURCES += \
     ../src/main.cpp \
-    ../src/mainwindow.cpp
+    ../src/mainwindow.cpp \
+    ../src/csvparser.cpp \
+    ../src/kommatablemodel.cpp
 
 HEADERS += \
-    ../include/mainwindow.h
+    ../include/mainwindow.h \
+    ../include/csvparser.h \
+    ../include/kommatablemodel.h
 
 FORMS += \
     ../ui/mainwindow.ui
@@ -27,3 +31,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+
+# Rohan was here!
