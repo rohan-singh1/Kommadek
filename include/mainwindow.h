@@ -1,9 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-// #define USE_TEST_DATA_1
-// #define USE_TEST_DATA_2
-
 #include <QMainWindow>
 #include <QDebug>
 #include <QFileDialog>

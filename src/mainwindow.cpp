@@ -6,45 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->ui->stackedWidget->setCurrentIndex(0);
-
-
-#ifdef USE_TEST_DATA_1
-
-    // Test Data #1 as parser is not implemented yet
-    QList <QStringList> records;
-
-    int numRows = 25;
-    int numColumns = 25;
-
-    for (int i = 1; i <= numRows; i++)
-    {
-        QStringList row;
-        for (int j = 1; j <= numColumns; j++)
-        {
-            QString cellValue = QString::number(i) + ", " + QString::number(j);
-            row.append(cellValue);
-        }
-        records.append(row);
-    }
-
-    KommaTableModel *tableModel =  new KommaTableModel(records, this);
-    this->ui->tableView->setModel(tableModel);
-    this->ui->stackedWidget->setCurrentIndex(1);
-
-#endif
-
-#ifdef USE_TEST_DATA_2
-
-    // Test Data #2 as parser is not implemented yet
-    QList <QStringList> stringMatrix  = {{"A", "B", "C", "D"}, {"Alpha", "Bravo", "Charlie", "Delta"}, {"1", "2", "3", "4", "5"}};
-
-    KommaTableModel *tableModel =  new KommaTableModel(stringMatrix, this);
-    this->ui->tableView->setModel(tableModel);
-    this->ui->stackedWidget->setCurrentIndex(1);
-
-#endif
-
+    this->ui->stackedWidget->setCurrentIndex(0); // Setting the start page as the default page on startup
 }
 
 MainWindow::~MainWindow()
