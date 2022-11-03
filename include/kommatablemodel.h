@@ -9,6 +9,9 @@ class KommaTableModel : public QAbstractTableModel
 
 private:
     QList <QStringList> _stringMatrix;
+    int _rowCount;
+    int _columnCount;
+    int _cellCount;
 
 public:
     explicit KommaTableModel(QList <QStringList> stringMatrix, QObject *parent = nullptr);
@@ -24,7 +27,8 @@ public:
 
     // Assorted utility functions for my table model
 
-    int getMaxColumns() const;
+    int maxColumns();
+    int cellCount() const;
 };
 
 #endif // KOMMATABLEMODEL_H
