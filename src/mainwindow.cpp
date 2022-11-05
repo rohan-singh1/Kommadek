@@ -7,11 +7,24 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->ui->stackedWidget->setCurrentIndex(0); // Setting the start page as the default page on startup
+    _tableModel = nullptr;
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::handleTableMetadataUpdateSignal()
+{
+    QString statusMessage = "Rows: " +
+        QString::number(_tableModel->rowCount()) + " | Columns: " +
+        QString::number(_tableModel->columnCount()) + " | Total Cells: " +
+        QString::number(_tableModel->rowCount() * _tableModel->columnCount()) + " | Filled Cells: " +
+        QString::number(_tableModel->filledCellCount()) + " | Empty Cells: " +
+        QString::number(_tableModel->emptyCellCount());
+
+    ui->statusbar->showMessage(statusMessage);
 }
 
 
@@ -22,23 +35,15 @@ void MainWindow::on_actionOpen_triggered()
     CsvParser *csvParser = new CsvParser(this);
     auto lines = csvParser->readAllLines(fileName);
     auto stringMatrix  = csvParser->parseCsvData(lines);
-    KommaTableModel *tableModel =  new KommaTableModel(stringMatrix, this);
-
+    _tableModel =  new KommaTableModel(stringMatrix, this);
+    connect(_tableModel, SIGNAL(tableMetadataUpdateSignal()), SLOT(handleTableMetadataUpdateSignal()));
     if(!stringMatrix.empty())
     {
 
-        this->ui->tableView->setModel(tableModel);
+        this->ui->tableView->setModel(_tableModel);
         this->ui->stackedWidget->setCurrentIndex(1);
-    }
-
-    QString statusMessage = "Rows: " +
-        QString::number(tableModel->rowCount()) + " | Columns: " +
-        QString::number(tableModel->columnCount()) + " | Total Cells: " +
-        QString::number(tableModel->rowCount() * tableModel->columnCount()) + " | Filled Cells: " +
-        QString::number(tableModel->cellCount()) + " | Empty Cells: " +
-        QString::number((tableModel->rowCount() * tableModel->columnCount()) - tableModel->cellCount());
-
-    ui->statusbar->showMessage(statusMessage);
+        handleTableMetadataUpdateSignal();
+    }   
 }
 
 
@@ -68,6 +73,6 @@ void MainWindow::on_openButton_clicked()
 
 void MainWindow::on_quitButton_clicked()
 {
-    exit(0);
+    on_actionQuit_triggered();
 }
 
