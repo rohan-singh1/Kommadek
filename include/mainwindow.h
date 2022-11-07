@@ -20,6 +20,8 @@ public:
     ~MainWindow();
 
 private slots:
+    void handleTableMetadataUpdateSignal();
+
     void on_actionOpen_triggered();
 
     void on_actionQuit_triggered();
@@ -34,5 +36,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    KommaTableModel* _tableModel;
 };
 #endif // MAINWINDOW_H
