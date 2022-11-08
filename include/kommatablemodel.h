@@ -46,6 +46,7 @@ public:
     int updateFilledCellsCount();
     void updateRowSizes(int row_number, int new_size);
     QList <int> initRowSizes();
+    QList <QStringList> stringMatrix();
 
 public slots:
     void updateTableMetadata(QModelIndex, QModelIndex);

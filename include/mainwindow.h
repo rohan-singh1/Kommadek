@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include "kommatablemodel.h"
 #include "csvparser.h"
+#include "csvexporter.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,8 +20,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    QString getTitleFromFileNameWithPath(QString);
+
 private slots:
     void handleTableMetadataUpdateSignal();
+
+    void handleDataChanged(const QModelIndex, const QModelIndex, const QVector<int>);
+
+    void saveFile(QString);
+
+    void updateWindowTitle(QString);
 
     void on_actionOpen_triggered();
 
@@ -34,9 +43,15 @@ private slots:
 
     void on_quitButton_clicked();
 
+    void on_actionSave_triggered();
+
+    void on_actionSave_As_triggered();
+
 private:
     Ui::MainWindow *ui;
 
     KommaTableModel* _tableModel;
+    QString _fileNameWithPath;
+    const QString _titlePrefix = "Kommadek";
 };
 #endif // MAINWINDOW_H

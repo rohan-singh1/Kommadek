@@ -14,15 +14,17 @@ INCLUDEPATH += \
 INCLUDEPATH += $$PWD/src/
 
 SOURCES += \
-    ../src/main.cpp \
-    ../src/mainwindow.cpp \
-    ../src/csvparser.cpp \
-    ../src/kommatablemodel.cpp
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/csvparser.cpp \
+    src/kommatablemodel.cpp \
+    src/csvexporter.cpp
 
 HEADERS += \
-    ../include/mainwindow.h \
-    ../include/csvparser.h \
-    ../include/kommatablemodel.h
+    include/mainwindow.h \
+    include/csvparser.h \
+    include/kommatablemodel.h \
+    include/csvexporter.h
 
 FORMS += \
     ../ui/mainwindow.ui

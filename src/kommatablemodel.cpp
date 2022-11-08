@@ -171,6 +171,11 @@ QList <int> KommaTableModel::initRowSizes()
     return rowSizesLocal;
 }
 
+QList<QStringList> KommaTableModel::stringMatrix()
+{
+    return _stringMatrix;
+}
+
 void KommaTableModel::updateTableMetadata(QModelIndex bottom_left, QModelIndex top_right)
 {
     Q_UNUSED(bottom_left);      // Parameter not required
