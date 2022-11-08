@@ -32,5 +32,11 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+macx:ICON = $${PWD}/resources/icons/macOS/Kommadek_RR.icns      # Rounded Rectangle Icon
+
+# Alternative Icons
+# macx:ICON = $${PWD}/resources/icons/macOS/Kommadek_Leaf.icns  # Leaf Shaped Icon
+# macx:ICON = $${PWD}/resources/icons/macOS/Kommadek.icns       # Circular Icon
+
 
 # Rohan was here!
