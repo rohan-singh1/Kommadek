@@ -4,8 +4,8 @@ KommaTableModel::KommaTableModel(QList <QStringList> string_matrix, QObject *par
 {
     connect(this, SIGNAL(dataChanged(QModelIndex, QModelIndex)), this, SLOT(updateTableMetadata(QModelIndex, QModelIndex)));
     _stringMatrix = string_matrix;
-    storeRowSizes();
-    calculateFilledCells();
+    _rowSizes = initRowSizes();
+    _filledCellCount = updateFilledCellsCount();
     updateTableMetadata(QModelIndex(),QModelIndex());
 }
 
@@ -135,24 +135,25 @@ int KommaTableModel::emptyCellCount() const
     return (_rowCount * _columnCount) - _filledCellCount;
 }
 
-void KommaTableModel::calculateFilledCells()
+int KommaTableModel::updateFilledCellsCount()
 {
     int sum = 0, i = 0;
     foreach(i, _rowSizes)
     {
         sum += i;
     }
-    _filledCellCount = sum;
+    return sum;
 }
 
 void KommaTableModel::updateRowSizes(int row_number, int new_size)
 {
     _rowSizes.replace(row_number, new_size);
-    calculateFilledCells();
+    _filledCellCount = updateFilledCellsCount();
 }
 
-void KommaTableModel::storeRowSizes()
+QList <int> KommaTableModel::initRowSizes()
 {
+    QList <int> rowSizesLocal;
     QStringList row;
     foreach(row, _stringMatrix)
     {
@@ -165,8 +166,9 @@ void KommaTableModel::storeRowSizes()
                 rowSize++;
             }
         }
-        _rowSizes.append(rowSize);
+        rowSizesLocal.append(rowSize);
     }
+    return rowSizesLocal;
 }
 
 void KommaTableModel::updateTableMetadata(QModelIndex bottom_left, QModelIndex top_right)

@@ -43,10 +43,9 @@ public:
     int maxColumns();
     int filledCellCount() const;
     int emptyCellCount() const;
-
-    void calculateFilledCells();
+    int updateFilledCellsCount();
     void updateRowSizes(int row_number, int new_size);
-    void storeRowSizes();
+    QList <int> initRowSizes();
 
 public slots:
     void updateTableMetadata(QModelIndex, QModelIndex);
