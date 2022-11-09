@@ -17,6 +17,8 @@ public:
 
     bool exportToCsvFile(QList <QStringList> string_matrix, QString file_name_with_path);
 
+    QString serializeStringMatrix(QList <QStringList> string_matrix);
+
 signals:
 
 };

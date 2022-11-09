@@ -23,24 +23,29 @@ bool CsvExporter::exportToCsvFile(QList<QStringList> string_matrix, QString file
     else
     {
         QTextStream outStream(&file);
-        QStringList row;
-        QString processedOutputString;
-
-        foreach (row, string_matrix)
-        {
-            QString cell, processedRow;
-            foreach (cell, row)
-            {
-                processedRow += cell + ",";
-            }
-            processedRow.chop(1);           // Removing final comma
-            processedRow.append("\n");
-            processedOutputString.append(processedRow);
-        }
-        processedOutputString.chop(1);      // Removing final line break
-        outStream << processedOutputString;
+        outStream << serializeStringMatrix(string_matrix);
         isSuccessful = true;
     }
     file.close();
     return isSuccessful;
+}
+
+QString CsvExporter::serializeStringMatrix(QList<QStringList> string_matrix)
+{
+    QStringList row;
+    QString processedOutputString;
+
+    foreach (row, string_matrix)
+    {
+        QString cell, processedRow;
+        foreach (cell, row)
+        {
+            processedRow += cell + ",";
+        }
+        processedRow.chop(1);           // Removing final comma
+        processedRow.append("\n");
+        processedOutputString.append(processedRow);
+    }
+    processedOutputString.chop(1);      // Removing final line break
+    return processedOutputString;
 }
