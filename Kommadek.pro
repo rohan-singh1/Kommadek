@@ -14,23 +14,31 @@ INCLUDEPATH += \
 INCLUDEPATH += $$PWD/src/
 
 SOURCES += \
-    ../src/main.cpp \
-    ../src/mainwindow.cpp \
-    ../src/csvparser.cpp \
-    ../src/kommatablemodel.cpp
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/csvparser.cpp \
+    src/kommatablemodel.cpp \
+    src/csvexporter.cpp
 
 HEADERS += \
-    ../include/mainwindow.h \
-    ../include/csvparser.h \
-    ../include/kommatablemodel.h
+    include/mainwindow.h \
+    include/csvparser.h \
+    include/kommatablemodel.h \
+    include/csvexporter.h
 
 FORMS += \
-    ../ui/mainwindow.ui
+    ui/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+macx:ICON = $${PWD}/resources/icons/macOS/Kommadek_RR.icns      # Rounded Rectangle Icon
+
+# Alternative Icons
+# macx:ICON = $${PWD}/resources/icons/macOS/Kommadek_Leaf.icns  # Leaf Shaped Icon
+# macx:ICON = $${PWD}/resources/icons/macOS/Kommadek.icns       # Circular Icon
 
 
 # Rohan was here!
