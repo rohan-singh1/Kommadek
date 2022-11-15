@@ -27,7 +27,7 @@ HEADERS += \
     include/csvexporter.h
 
 FORMS += \
-    ../ui/mainwindow.ui
+    ui/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
