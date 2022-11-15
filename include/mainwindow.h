@@ -47,6 +47,8 @@ private slots:
 
     void on_actionSave_As_triggered();
 
+    void on_aboutOKButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

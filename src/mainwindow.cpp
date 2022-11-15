@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->ui->stackedWidget->setCurrentIndex(0); // Setting the start page as the default page on startup
+    this->ui->label->setHidden(true);
+    this->ui->aboutOKButton->setHidden(true);
     _tableModel = nullptr;
 }
 
@@ -26,11 +28,11 @@ QString MainWindow::getTitleFromFileNameWithPath(QString file_name_with_path)
 void MainWindow::handleTableMetadataUpdateSignal()
 {
     QString statusMessage = "Rows: " +
-        QString::number(_tableModel->rowCount()) + " | Columns: " +
-        QString::number(_tableModel->columnCount()) + " | Total Cells: " +
-        QString::number(_tableModel->rowCount() * _tableModel->columnCount()) + " | Filled Cells: " +
-        QString::number(_tableModel->filledCellCount()) + " | Empty Cells: " +
-        QString::number(_tableModel->emptyCellCount());
+            QString::number(_tableModel->rowCount()) + " | Columns: " +
+            QString::number(_tableModel->columnCount()) + " | Total Cells: " +
+            QString::number(_tableModel->rowCount() * _tableModel->columnCount()) + " | Filled Cells: " +
+            QString::number(_tableModel->filledCellCount()) + " | Empty Cells: " +
+            QString::number(_tableModel->emptyCellCount());
 
     ui->statusbar->showMessage(statusMessage);
 }
@@ -93,7 +95,7 @@ void MainWindow::on_actionOpen_triggered()
     _tableModel =  new KommaTableModel(stringMatrix, this);
     connect(_tableModel, SIGNAL(tableMetadataUpdateSignal()), SLOT(handleTableMetadataUpdateSignal()));
     connect(_tableModel, SIGNAL(dataChanged(const QModelIndex, const QModelIndex, const QVector<int>)),
-                                this, SLOT(handleDataChanged(const QModelIndex, const QModelIndex, const QVector<int>)));
+            this, SLOT(handleDataChanged(const QModelIndex, const QModelIndex, const QVector<int>)));
     if(!stringMatrix.empty())
     {
 
@@ -101,7 +103,7 @@ void MainWindow::on_actionOpen_triggered()
         this->ui->stackedWidget->setCurrentIndex(1);
         handleTableMetadataUpdateSignal();
         updateWindowTitle(getTitleFromFileNameWithPath(_fileNameWithPath));
-    }   
+    }
 }
 
 
@@ -119,6 +121,27 @@ void MainWindow::on_actionHelp_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
+    QString result;
+    result.append("<b><u>About Kommedek</u></b><br>");
+    result.append("Version 01.05<br><br>");
+    result.append("<b>Dear Proffesor:</b><br><br>");
+    result.append("Kommadek is a GUI application based in Qt/C++ to view and edit CSV files.<br>");
+
+    result.append("We have chosen C++ as the primary programming language for this project because we have a decent knowledge of C++ and I have prior work experience in Qt.<br> "
+                  "Also, the documentation for Qt is easily the best among all the GUI frameworks available in C++.<br>");
+
+
+    result.append("This program is provided by Zarrin and Rohan.");
+    result.append("\nGood luck\n\n<a href='mailto:monirzadehzarrin@gmail.com'>monirzadehzarrin@gmail.com</a>");
+
+    ui->stackedWidget->setCurrentIndex(0);
+
+    ui->label->setText(result);
+    ui->openButton->setVisible(false);
+    ui->quitButton->setVisible(false);
+
+    ui->label->setHidden(false);
+    ui->aboutOKButton->setHidden(false);
 
 }
 
@@ -145,5 +168,15 @@ void MainWindow::on_actionSave_As_triggered()
 {
     QString fileNameWithPath = QFileDialog::getSaveFileName(this,tr("Save CSV File"), "", tr("CSV Files (*.csv)"));
     saveFile(fileNameWithPath);
+}
+
+
+void MainWindow::on_aboutOKButton_clicked()
+{
+    ui->openButton->setVisible(true);
+    ui->quitButton->setVisible(true);
+
+    ui->label->setHidden(true);
+    ui->aboutOKButton->setHidden(true);
 }
 

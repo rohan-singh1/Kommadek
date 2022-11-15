@@ -36,7 +36,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="p1">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -55,6 +55,20 @@
         <property name="bottomMargin">
          <number>20</number>
         </property>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="aboutOKButton">
+          <property name="text">
+           <string>OK</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <spacer name="verticalSpacer">
           <property name="orientation">
@@ -171,18 +185,42 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
+   </property>
+   <property name="tabletTracking">
+    <bool>false</bool>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
    </property>
    <property name="nativeMenuBar">
     <bool>true</bool>
    </property>
    <widget class="QMenu" name="menuFile">
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionOpen"/>
+    <property name="separatorsCollapsible">
+     <bool>false</bool>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>false</bool>
+    </property>
     <addaction name="separator"/>
+    <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="separator"/>
