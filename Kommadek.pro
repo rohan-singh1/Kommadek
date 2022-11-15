@@ -14,6 +14,7 @@ INCLUDEPATH += \
 INCLUDEPATH += $$PWD/src/
 
 SOURCES += \
+    src/aboutdialog.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/csvparser.cpp \
@@ -21,12 +22,14 @@ SOURCES += \
     src/csvexporter.cpp
 
 HEADERS += \
+    include/aboutdialog.h \
     include/mainwindow.h \
     include/csvparser.h \
     include/kommatablemodel.h \
     include/csvexporter.h
 
 FORMS += \
+    ui/aboutdialog.ui \
     ui/mainwindow.ui
 
 # Default rules for deployment.
@@ -42,3 +45,9 @@ macx:ICON = $${PWD}/resources/icons/macOS/Kommadek_RR.icns      # Rounded Rectan
 
 
 # Rohan was here!
+
+DISTFILES += \
+    resources/icons/Kommadek_Logo_RR_1024.png
+
+RESOURCES += \
+    resources/kommadekresources.qrc

@@ -121,28 +121,8 @@ void MainWindow::on_actionHelp_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QString result;
-    result.append("<b><u>About Kommedek</u></b><br>");
-    result.append("Version 01.05<br><br>");
-    result.append("<b>Dear Proffesor:</b><br><br>");
-    result.append("Kommadek is a GUI application based in Qt/C++ to view and edit CSV files.<br>");
-
-    result.append("We have chosen C++ as the primary programming language for this project because we have a decent knowledge of C++ and I have prior work experience in Qt.<br> "
-                  "Also, the documentation for Qt is easily the best among all the GUI frameworks available in C++.<br>");
-
-
-    result.append("This program is provided by Zarrin and Rohan.");
-    result.append("\nGood luck\n\n<a href='mailto:monirzadehzarrin@gmail.com'>monirzadehzarrin@gmail.com</a>");
-
-    ui->stackedWidget->setCurrentIndex(0);
-
-    ui->label->setText(result);
-    ui->openButton->setVisible(false);
-    ui->quitButton->setVisible(false);
-
-    ui->label->setHidden(false);
-    ui->aboutOKButton->setHidden(false);
-
+    AboutDialog aboutDialog;
+    aboutDialog.exec();
 }
 
 
