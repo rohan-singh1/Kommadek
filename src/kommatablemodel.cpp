@@ -1,4 +1,4 @@
-#include "kommatablemodel.h"
+#include "include/kommatablemodel.h"
 
 KommaTableModel::KommaTableModel(QList <QStringList> string_matrix, QObject *parent) : QAbstractTableModel(parent)
 {

@@ -7,6 +7,7 @@
 #include "kommatablemodel.h"
 #include "csvparser.h"
 #include "csvexporter.h"
+#include "aboutdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
