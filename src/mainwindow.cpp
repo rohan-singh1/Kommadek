@@ -7,9 +7,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->ui->stackedWidget->setCurrentIndex(0); // Setting the start page as the default page on startup
-    this->ui->label->setHidden(true);
-    this->ui->aboutOKButton->setHidden(true);
     _tableModel = nullptr;
+
+    initColumnContextMenu();
+    initRowContextMenu();
 }
 
 MainWindow::~MainWindow()
@@ -47,7 +48,6 @@ void MainWindow::handleDataChanged(const QModelIndex topLeft, const QModelIndex 
     {
         this->setWindowTitle(this->windowTitle() + "*");
     }
-
 }
 
 void MainWindow::saveFile(QString file_name_with_path)
@@ -76,6 +76,74 @@ void MainWindow::updateWindowTitle(QString new_caption)
     this->setWindowTitle(new_caption);
 }
 
+void MainWindow::initColumnContextMenu()
+{
+    QHeaderView* headerView = ui->tableView->horizontalHeader();
+    headerView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(headerView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(handleColumnCustomMenuRequested(const QPoint&)));
+
+    _columnMenu = new QMenu(ui->tableView);
+    QAction *insertRight = _columnMenu->addAction("Insert Column to the Right");
+    QAction *insertLeft = _columnMenu->addAction("Insert Column to the Left");
+
+    connect(insertRight, SIGNAL(triggered()), this, SLOT(insertColumnRight()));
+    connect(insertLeft, SIGNAL(triggered()), this, SLOT(insertColumnLeft()));
+}
+
+void MainWindow::initRowContextMenu()
+{
+
+    QHeaderView* headerView = ui->tableView->verticalHeader();
+    headerView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(headerView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(handleRowCustomMenuRequested(const QPoint&)));
+
+    _rowMenu = new QMenu(ui->tableView);
+    QAction *insertTop = _rowMenu->addAction("Insert Row to the Top");
+    QAction *insertBottom = _rowMenu->addAction("Insert Row to the Bottom");
+
+    connect(insertTop, SIGNAL(triggered()), this, SLOT(insertRowTop()));
+    connect(insertBottom, SIGNAL(triggered()), this, SLOT(insertRowBottom()));
+}
+
+void MainWindow::handleColumnCustomMenuRequested(const QPoint& mouse_position)
+{
+    _currentIndexForContextMenu = ui->tableView->indexAt(mouse_position);
+    _columnMenu->popup(ui->tableView->viewport()->mapToGlobal(mouse_position));
+}
+
+void MainWindow::handleRowCustomMenuRequested(const QPoint & mouse_position)
+{
+    _currentIndexForContextMenu = ui->tableView->indexAt(mouse_position);
+    _rowMenu->popup(ui->tableView->viewport()->mapToGlobal(mouse_position));
+}
+
+void MainWindow::insertColumnRight()
+{
+    _tableModel->insertEmptyColumn(_currentIndexForContextMenu.column() + 1);
+    ui->tableView->setModel(nullptr);
+    ui->tableView->setModel(_tableModel);
+}
+
+void MainWindow::insertColumnLeft()
+{
+    _tableModel->insertEmptyColumn(_currentIndexForContextMenu.column());
+    ui->tableView->setModel(nullptr);
+    ui->tableView->setModel(_tableModel);
+}
+
+void MainWindow::insertRowTop()
+{
+    _tableModel->insertEmptyRow(_currentIndexForContextMenu.row());
+    ui->tableView->setModel(nullptr);
+    ui->tableView->setModel(_tableModel);
+}
+
+void MainWindow::insertRowBottom()
+{
+    _tableModel->insertEmptyRow(_currentIndexForContextMenu.row() + 1);
+    ui->tableView->setModel(nullptr);
+    ui->tableView->setModel(_tableModel);
+}
 
 void MainWindow::on_actionOpen_triggered()
 {
@@ -150,13 +218,4 @@ void MainWindow::on_actionSave_As_triggered()
     saveFile(fileNameWithPath);
 }
 
-
-void MainWindow::on_aboutOKButton_clicked()
-{
-    ui->openButton->setVisible(true);
-    ui->quitButton->setVisible(true);
-
-    ui->label->setHidden(true);
-    ui->aboutOKButton->setHidden(true);
-}
 

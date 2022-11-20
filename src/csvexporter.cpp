@@ -40,7 +40,10 @@ QString CsvExporter::serializeStringMatrix(QList<QStringList> string_matrix)
         QString cell, processedRow;
         foreach (cell, row)
         {
-            processedRow += cell + ",";
+            if(!cell.isEmpty())         // Do not add comma after an empty string
+            {
+                processedRow += cell + ",";
+            }
         }
         processedRow.chop(1);           // Removing final comma
         processedRow.append("\n");

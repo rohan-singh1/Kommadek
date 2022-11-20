@@ -151,6 +151,37 @@ void KommaTableModel::updateRowSizes(int row_number, int new_size)
     _filledCellCount = updateFilledCellsCount();
 }
 
+void KommaTableModel::insertEmptyRow(int position)
+{
+    QStringList stringList;
+
+    for (int i = 0; i < maxColumns(); i++)
+    {
+        stringList.append("");
+    }
+    _stringMatrix.insert(position, stringList);
+    emit dataChanged(index (position, 0), index(position, maxColumns()));
+    _rowSizes = initRowSizes();
+}
+
+void KommaTableModel::insertEmptyColumn(int position)
+{
+    for (int i = 0; i < _stringMatrix.size(); i++)
+    {
+        if (position > _stringMatrix[i].size())
+        {
+            for (int j = 0; j < (position -_stringMatrix[i].size()); j++)
+            {
+                _stringMatrix[i].append("");
+            }
+        }
+        _stringMatrix[i].insert(position, "");
+    }
+
+    emit dataChanged(index (0, position), index(rowCount(), maxColumns()));
+    _columnCount = maxColumns();
+}
+
 QList <int> KommaTableModel::initRowSizes()
 {
     QList <int> rowSizesLocal;

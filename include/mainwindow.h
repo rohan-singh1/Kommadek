@@ -32,6 +32,22 @@ private slots:
 
     void updateWindowTitle(QString);
 
+    void initColumnContextMenu();
+
+    void initRowContextMenu();
+
+    void handleColumnCustomMenuRequested(const QPoint&);
+
+    void handleRowCustomMenuRequested(const QPoint&);
+
+    void insertColumnRight();
+
+    void insertColumnLeft();
+
+    void insertRowTop();
+
+    void insertRowBottom();
+
     void on_actionOpen_triggered();
 
     void on_actionQuit_triggered();
@@ -48,13 +64,14 @@ private slots:
 
     void on_actionSave_As_triggered();
 
-    void on_aboutOKButton_clicked();
-
 private:
     Ui::MainWindow *ui;
 
-    KommaTableModel* _tableModel;
+    KommaTableModel *_tableModel;
     QString _fileNameWithPath;
     const QString _titlePrefix = "Kommadek";
+    QMenu *_columnMenu;
+    QMenu *_rowMenu;
+    QModelIndex _currentIndexForContextMenu;
 };
 #endif // MAINWINDOW_H
