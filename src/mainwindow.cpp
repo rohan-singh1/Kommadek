@@ -228,5 +228,8 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::on_actionSave_As_triggered()
 {
     QString fileNameWithPath = QFileDialog::getSaveFileName(this,tr("Save CSV File"), "", tr("CSV Files (*.csv)"));
-    saveFile(fileNameWithPath);
+    if(!fileNameWithPath.isEmpty())
+    {
+        saveFile(fileNameWithPath);
+    }
 }
