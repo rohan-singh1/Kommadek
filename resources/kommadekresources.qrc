@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>icons/Kommadek_Logo_RR_1024.png</file>
+        <file>icons/Open_32.png</file>
+        <file>icons/Save_32.png</file>
+        <file>icons/Save_As_32.png</file>
+        <file>icons/Help_32.png</file>
+        <file>icons/About_32.png</file>
     </qresource>
 </RCC>

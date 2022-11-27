@@ -45,6 +45,8 @@ public:
     int emptyCellCount() const;
     int updateFilledCellsCount();
     void updateRowSizes(int row_number, int new_size);
+    void insertEmptyRow(int position);
+    void insertEmptyColumn(int position);
     QList <int> initRowSizes();
     QList <QStringList> stringMatrix();
 

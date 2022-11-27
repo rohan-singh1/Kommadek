@@ -29,7 +29,7 @@ QList<QStringList> CsvParser::parseCsvData(QStringList csv_lines)
     QString cell;
     foreach (cell, csv_lines)
     {
-        QStringList row = cell.split(u',', Qt::SkipEmptyParts);
+        QStringList row = cell.split(u',');
         parsedData.append(row);
     }
 
