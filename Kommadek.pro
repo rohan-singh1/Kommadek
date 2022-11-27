@@ -14,6 +14,7 @@ INCLUDEPATH += \
 INCLUDEPATH += $$PWD/src/
 
 SOURCES += \
+    src/helpdialog.cpp \
     src/aboutdialog.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
     src/csvexporter.cpp
 
 HEADERS += \
+    include/helpdialog.h \
     include/aboutdialog.h \
     include/mainwindow.h \
     include/csvparser.h \
@@ -29,6 +31,7 @@ HEADERS += \
     include/csvexporter.h
 
 FORMS += \
+    ui/helpdialog.ui \
     ui/aboutdialog.ui \
     ui/mainwindow.ui
 
