@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Kommadek</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../resources/kommadekresources.qrc">
+    <normaloff>:/icons/About_32.png</normaloff>:/icons/About_32.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="autoFillBackground">
     <bool>true</bool>
@@ -187,7 +191,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="tabletTracking">
@@ -296,7 +300,7 @@
   </action>
   <action name="actionHelp">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../resources/kommadekresources.qrc">
