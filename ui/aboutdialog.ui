@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>About Kommadek</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../resources/kommadekresources.qrc">
+    <normaloff>:/icons/About_32.png</normaloff>:/icons/About_32.png</iconset>
+  </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
@@ -92,7 +96,9 @@ border-image: url(:/icons/Kommadek_Logo_RR_1024.png) 0 0 0 0 stretch stretch;
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/kommadekresources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

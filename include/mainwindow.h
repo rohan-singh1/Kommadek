@@ -8,6 +8,8 @@
 #include "csvparser.h"
 #include "csvexporter.h"
 #include "aboutdialog.h"
+#include "helpdialog.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

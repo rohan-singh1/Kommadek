@@ -196,7 +196,8 @@ void MainWindow::on_actionQuit_triggered()
 
 void MainWindow::on_actionHelp_triggered()
 {
-
+    HelpDialog helpDialog;
+    helpDialog.exec();
 }
 
 
