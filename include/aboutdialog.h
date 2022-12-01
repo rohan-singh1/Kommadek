@@ -2,6 +2,7 @@
 #define ABOUTDIALOG_H
 
 #include <QDialog>
+#include <QPropertyAnimation>
 
 namespace Ui {
 class AboutDialog;
@@ -17,6 +18,8 @@ public:
 
 private slots:
     void on_buttonBox_accepted();
+
+    void on_logoButton_clicked();
 
 private:
     Ui::AboutDialog *ui;

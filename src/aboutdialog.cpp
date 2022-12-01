@@ -18,3 +18,13 @@ void AboutDialog::on_buttonBox_accepted()
     this->close();
 }
 
+
+void AboutDialog::on_logoButton_clicked()
+{
+    QPropertyAnimation *animation = new QPropertyAnimation(ui->logoButton, "geometry");
+    animation->setDuration(200);
+    animation->setStartValue(QRect(67, 136, 2, 2));     // 67, 136, 2, 2
+    animation->setEndValue(QRect(20, 90, 96, 96));   // 20, 90, 96, 96
+    animation->start();
+}
+

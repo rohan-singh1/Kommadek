@@ -39,25 +39,6 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>90</y>
-     <width>96</width>
-     <height>96</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">
-border-image: url(:/icons/Kommadek_Logo_RR_1024.png) 0 0 0 0 stretch stretch;
-
-</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
@@ -70,6 +51,7 @@ border-image: url(:/icons/Kommadek_Logo_RR_1024.png) 0 0 0 0 stretch stretch;
    <property name="font">
     <font>
      <pointsize>28</pointsize>
+     <weight>50</weight>
      <bold>false</bold>
     </font>
    </property>
@@ -93,6 +75,23 @@ border-image: url(:/icons/Kommadek_Logo_RR_1024.png) 0 0 0 0 stretch stretch;
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rohan Singh&lt;/p&gt;&lt;p&gt;Zarrin Monirzadeh&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="logoButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>90</y>
+     <width>96</width>
+     <height>96</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 255, 255, 0);
+border-image: url(:/icons/Kommadek_Logo_RR_1024.png);</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>
